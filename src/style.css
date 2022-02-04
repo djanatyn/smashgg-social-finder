@@ -1,0 +1,17 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2ch;
+    column-gap: 2ch;
+}
+.container {
+    margin: 2ch;
+    display: grid;
+    row-gap: 1ch;
+    grid-template-columns: 1fr 3fr;
+}
+.submit {
+    margin: 1ch;
+}
