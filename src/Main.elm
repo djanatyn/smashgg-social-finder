@@ -106,22 +106,6 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
   Sub.none
 
-
-form : Model -> List (Html Msg)
-form model
-  = [ div [ class "container" ]
-      [ text "slug"
-      , input [ type_ "text", placeholder "waddle-wednesday", value model.slug, onInput Slug] []
-      , text "token"
-      , input [ type_ "password"
-              , placeholder "09040aea5a6d4c7a9aae371e47fe142d"
-              , value model.token
-              , onInput Token
-              ] []
-      ]
-      , div [ class "submit" ] [ input [ type_ "button", value "go!", onClick Fetch] [] ]
-    ]
-
 type alias SocialConnection =
   { id : Maybe String
   , name : Maybe String
@@ -161,6 +145,21 @@ eventDecoder = D.at ["standings", "nodes"] (D.list entrantDecoder)
 -- {"data":{"tournament":{"events":[{"standings":{"nodes":[...]}}]}}}
 responseDecoder : D.Decoder (List (List Entrant))
 responseDecoder = (D.at ["data", "tournament", "events"] (D.list eventDecoder))
+
+form : Model -> List (Html Msg)
+form model
+  = [ div [ class "container" ]
+      [ text "slug"
+      , input [ type_ "text", placeholder "waddle-wednesday", value model.slug, onInput Slug] []
+      , text "token"
+      , input [ type_ "password"
+              , placeholder "09040aea5a6d4c7a9aae371e47fe142d"
+              , value model.token
+              , onInput Token
+              ] []
+      ]
+      , div [ class "submit" ] [ input [ type_ "button", value "go!", onClick Fetch] [] ]
+    ]
 
 doc : Model -> List (Html Msg)
 doc model
