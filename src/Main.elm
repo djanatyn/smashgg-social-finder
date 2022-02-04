@@ -170,6 +170,24 @@ doc model
       )
     ]
 
+render : Entrant -> Html Msg
+render entrant =
+  let
+    connections : List SocialConnection
+    connections = List.concat entrant.connections
+
+    renderConnection : SocialConnection -> Html Msg
+    renderConnection connection
+      = li [] [text (String.join " "
+        [ Maybe.withDefault "" connection.name
+        , "(" ++ connection.socialType ++ ")"
+        ])]
+  in li []
+    [ h1 [] [text entrant.name]
+    , ul [] (List.map renderConnection connections)
+    ]
+
+
 view : Model -> Document Msg
 view model =
   case model.state of
@@ -187,8 +205,10 @@ view model =
       }
 
     Success data ->
-      {title = "success", body = doc model ++
-           [case D.decodeString responseDecoder data of
-                Ok _ -> text "successful decode"
-                Err error -> text (D.errorToString error)
-           ]}
+      { title = "success"
+      , body = doc model ++
+           case D.decodeString responseDecoder data of
+                Ok decoded ->
+                    [ul [] (List.map render (List.concat decoded))]
+                Err error -> [text (D.errorToString error)]
+      }
