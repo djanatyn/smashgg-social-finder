@@ -183,7 +183,7 @@ render entrant =
         , "(" ++ connection.socialType ++ ")"
         ])]
   in li []
-    [ h1 [] [text entrant.name]
+    [ text entrant.name
     , ul [] (List.map renderConnection connections)
     ]
 
