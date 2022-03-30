@@ -2,6 +2,8 @@
 
 Get the social media connections for the top 8 players in a bracket.
 
+* https://djanatyn.github.io/smashgg-social-finder/
+
 # Motivation
 
 Quickly creating top 8 graphics! And DevDogg.
@@ -29,6 +31,8 @@ There's an illustrated tutorial available:
 * https://developer.smash.gg/docs/authentication
 
 Unforuntately, there's no support for guest keys available on their public API. The private API does not require a token, but is not available due to CORS restrictions (?).
+
+If you need help getting a key, message `djanatyn`!
 
 # Building
 
